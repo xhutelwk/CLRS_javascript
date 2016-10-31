@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>
+</title>
+
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#id_file').on("change",function(e){
+			var file = e.target.files[0];
+			var reader=new FileReader();
+			reader.readAsText(file);
+			reader.onload=function(data){
+				$('#code').text(this.result);
+			}
+			$.getScript(file.name,function(){
+				console.log("remove");
+				$('#input p').remove();
+				var test = $.parseJSON(test_data);
+				console.log(test_data);
+				for( i in test_data ){
+					console.log(test_data[i]);
+					$('#input').append("<p>"+JSON.stringify(test_data[i])+"</p");
+				}
+			});
+		});
+	});
+	function add(){
+		var text = $('#user_input').val();
+		$('#input').append("<p>"+text+"</p>");
+	}
+	function run(){
+		console.log("run");
+		$('#input p').each(function(i){
+			var data = $.parseJSON($(this).html());
+			Solution(data);
+			$('#output').append("<p>"+JSON.stringify(data)+"</p>");
+		});
+	}
+</script>
+</head>
+<body>
+<input type='file' id='id_file'/><br/>
+<textarea id="code" rows=10 cols=80></textarea>
+
+<div class="source" id="input">
+	<h2>inputs</h2>
+	<textarea id="user_input" rows=3 cols=80></textarea><br/>
+	<button title="add" onclick="add();">add test data</button>
+</div>
+<button id='run' title="run" onclick="run();">run the test datas</button>
+<div id="output">
+	<h2>outputs</h2>
+</div>
+</body>
+</html>
