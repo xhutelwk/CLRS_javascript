@@ -24,11 +24,13 @@
 					$('#input').append("<p>"+JSON.stringify(test_data[i])+"</p");
 				}
 			});
+			$('#output p').remove();
 		});
 	});
 	function add(){
 		var text = $('#user_input').val();
 		$('#input').append("<p>"+text+"</p>");
+		
 	}
 	function run(){
 		console.log("run");
@@ -37,9 +39,9 @@
 			var data = $.parseJSON($(this).html());
 			var d = new Date()
 			var begin = d.getTime();
-			Solution(data);
+			var ret = Solution(data);
 			var cost = d.getTime() - begin;
-			var html = "<p>["+cost+"ms] "+JSON.stringify(data)+"</p>";
+			var html = "<p>["+cost+"ms] "+JSON.stringify(ret)+"</p>";
 			console.log(html);
 			
 			$('#output').append(html);
