@@ -1,8 +1,4 @@
-/*
-INSERTION_SORT
-*/
-
-function Solution(A){
+function INSERTION_SORT(A){
 	for( j=1 ; j<A.length ; j++ ){
 		key = A[j];
 		;
@@ -13,21 +9,11 @@ function Solution(A){
 	}
 }
 
+
+// test
 var test_data = [[10,40,30],[1,5,7,4,2,3]];
-
-/*
-function Solution(){
-	this.run = INSERTION_SORT;
+function Solution(jsonData){
+	A = jsonData;
+	INSERTION_SORT(A);
+	return A;
 }
-
-var Solution = { 
-	createNew : function(){
-		var sol = {};
-		sol.run = function(test_data){
-			var data = $.parseJSON(test_data);
-			INSERTION_SORT(data);
-			return data;
-		};
-		return sol;
-	};
-};*/

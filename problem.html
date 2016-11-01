@@ -31,6 +31,7 @@
 	}
 	function run(){
 		console.log("run");
+		$('#output').html("");
 		$('#input p').each(function(i){
 			var data = $.parseJSON($(this).html());
 			Solution(data);
