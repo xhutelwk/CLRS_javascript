@@ -1,11 +1,9 @@
 function MERGE_SORT(A,s,e){
-	if( s >= e )
-		return A;
+	if( s >= e ) return;
 	var m = parseInt( (e+s)/2 );
 	MERGE_SORT(A,s,m);
 	MERGE_SORT(A,m+1,e);
 	MERGE(A,s,m,e);
-	return A;
 }
 
 function MERGE(A,s,m,e){
@@ -24,8 +22,6 @@ function MERGE(A,s,m,e){
 			j++;
 		}
 	}
-
-	return A;
 }
 
 // test
