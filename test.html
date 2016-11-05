@@ -3,8 +3,12 @@
 <title>
 </title>
 <style>
+	p{
+		width:800px;
+	}
 </style>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="Generate_test_data.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#id_file').on("change",function(e){
@@ -24,12 +28,20 @@
 			$('#output p').remove();
 		});
 	});
-	function add(){
-		var text = $('#user_input').val();
-		$('#input').append("<p>"+text+"</p>");
-		
+	function on_clear(){
+		$('#input p').remove();
 	}
-	function run(times){
+	function on_add(){
+		var text = $('#user_input').val();
+		$('#input').append("<p>"+text+"</p>");		
+	}
+	function on_generate(){
+		var text = $('#user_input').val();
+		var config = $.parseJSON(text);
+		var data = Generate_test_data(config);
+		$('#input').append("<p>"+JSON.stringify(data)+"</p>");
+	}
+	function on_run(times){
 		$('#output p').remove();
 		$('#input p').each(function(i){
 			var data = $.parseJSON($(this).html());
@@ -50,16 +62,21 @@
 </head>
 <body>
 <input type='file' id='id_file'/><br/>
-<textarea id="code" rows=10 cols=80></textarea>
+<textarea id="code" rows='10' cols='80'></textarea>
 
 <div id="input">
 	<h2>inputs</h2>
-	<textarea id="user_input" rows=3 cols=80></textarea><br/>
-	<button title="add" onclick="add();">add test data</button>
+	<textarea id="user_input" rows='3' cols='80'>
+{"type":"sort","min":-1000,"max":1000,"quantity":100}
+		 </textarea><br/>
+	<button title="clear" onclick="on_clear();">clear data</button>
+	<button title="add" onclick="on_add();">add to test data</button>
+	<button title="generate" onclick="on_generate();">generate test data</button>
 </div>
-<button title="run once" onclick="run(1);">run once</button>
-<button title="run 10 times" onclick="run(10);">run 10 times</button>
-<button title="run 10000 times" onclick="run(10000);">run 10000 times</button>
+<br/><hr/>
+<button title="run once" onclick="on_run(1);">run once</button>
+<button title="run 10 times" onclick="on_run(10);">run 10 times</button>
+<button title="run 10000 times" onclick="on_run(10000);">run 10000 times</button>
 <div id="output">
 	<h2>outputs</h2>
 </div>
