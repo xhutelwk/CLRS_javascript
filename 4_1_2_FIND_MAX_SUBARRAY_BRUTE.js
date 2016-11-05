@@ -5,9 +5,9 @@ function FIND_MAX_SUBARRAY_BRUTE(A,low,high){
     var max = -INT_MAX;
     var left = 0;
     var right = 0;
-    for( i=0 ; i<len-2 ; i++ ){
+    for( i=0 ; i < len-2 ; i++ ){
         var sum = 0;        
-        for( j=i ; j<len-1 ; j++){
+        for( j = i ; j < len-1 ; j++){
             sum += A[j];
             if( sum > max ){
                 left = i;
