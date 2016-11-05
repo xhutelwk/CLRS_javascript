@@ -7,7 +7,7 @@ determines whether or not there exist two elements in S whose sum is exactly x.
 function FIND_TWO_NUMBER(A,v){
     // sort first O(nlgn);
 	MERGE_SORT(A,0,A.length-1);
-    console.log(A);
+    //console.log(A);
     // find n times ,each time lgn
     for( i=0 ; i<A.length-1 ; i++ ){
         if( A[i]>=v )

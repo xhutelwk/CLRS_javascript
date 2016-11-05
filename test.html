@@ -29,13 +29,17 @@
 		$('#input').append("<p>"+text+"</p>");
 		
 	}
-	function run(){
+	function run(times){
 		$('#output p').remove();
 		$('#input p').each(function(i){
 			var data = $.parseJSON($(this).html());
-			var d = new Date()
+			var d = new Date();
 			var begin = d.getTime();
-			var ret = Solution(data);
+			for ( i=0 ; i<times ;i++ ){
+				var data = $.parseJSON($(this).html());
+				ret = Solution(data);
+			}
+			d = new Date();			
 			var cost = d.getTime() - begin;
 			var html = "<p>["+cost+"ms] "+JSON.stringify(ret)+"</p>";
 			
@@ -48,12 +52,14 @@
 <input type='file' id='id_file'/><br/>
 <textarea id="code" rows=10 cols=80></textarea>
 
-<div class="source" id="input">
+<div id="input">
 	<h2>inputs</h2>
 	<textarea id="user_input" rows=3 cols=80></textarea><br/>
 	<button title="add" onclick="add();">add test data</button>
 </div>
-<button id='run' title="run" onclick="run();">run the test datas</button>
+<button title="run once" onclick="run(1);">run once</button>
+<button title="run 10 times" onclick="run(10);">run 10 times</button>
+<button title="run 10000 times" onclick="run(10000);">run 10000 times</button>
 <div id="output">
 	<h2>outputs</h2>
 </div>
