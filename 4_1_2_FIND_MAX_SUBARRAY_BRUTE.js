@@ -1,6 +1,6 @@
 var INT_MAX=1<<52;
 
-function FIND_MAX_SUBARRAY_BRUTE(A,low,high){
+function FIND_MAX_SUBARRAY_BRUTE(A){
     var len = A.length;
     var max = -INT_MAX;
     var left = 0;

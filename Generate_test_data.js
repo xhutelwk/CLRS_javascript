@@ -8,7 +8,7 @@ function Generate_test_data(config){
 
         var data = new Array(quantity);
         var scale = max-min;
-        for( i=0 ; i<quantity ; i++ ){
+        for( i=0 ; i < quantity ; i++ ){
             var d = parseInt( Math.random()*scale + min );
             data[i] = d;
         }

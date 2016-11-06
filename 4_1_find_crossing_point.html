@@ -8,13 +8,50 @@
 <script type="text/javascript" src="4_1_2_FIND_MAX_SUBARRAY_BRUTE.js"></script>
 <script type="text/javascript" src="4_1_FIND_MAX_SUBARRAY.js"></script>
 <script type="text/javascript">
-
+function on_begin(){
+    var config = {"type":"sort","min":-99999,"max":99999,"quantity":10000};
+    var min = 5;
+    var max = 10000;
+    var times = 300;
+    while( true ){
+        var q = parseInt( (min+max)/2 );
+        config.quantity = q;
+console.log(config);
+        str = "quantity:"+q;
+        str += " times:"+times;
+console.log( str );
+        var data = Generate_test_data( config );
+//console.log( data );
+        tb = (new Date()).getTime();
+        for( i = 0 ; i < times ; i++ ){
+            ret = FIND_MAX_SUBARRAY( data,0,data.length-1);
+        }
+        td1 = (new Date()).getTime() - tb;
+        str += " ordinary:"+td1;
+console.log( str );
+        tb = (new Date()).getTime();
+        for( i = 0 ; i < times ; i++ ){
+            ret = FIND_MAX_SUBARRAY_BRUTE( data );
+        }
+        td2 = (new Date()).getTime() - tb;
+        str += " brute:"+td2;
+console.log( str );
+        $('#output').append( str+"<br/>" );
+        if( Math.abs(td1-td2)<2 ){
+            break;
+        }else if( td1 < td2 ){
+            max = q;
+        }else{
+            min = q;
+        }
+    }
+}
 </script>
 </head>
 <body>
 <h2>find the performace crossing pint of algrithms;
     </h2>
-<button onclick="on_begin()"></button>
+<button onclick="on_begin()">start</button>
 <div id="output"></div>
 
 
